@@ -14,9 +14,10 @@ public:
 	 * @brief Constructor
 	 * @param origin Point on the plane
 	 * @param normal Normal to the plane
+	 * @param color Color of the primitive
 	 */
-	CPrimPlane(Vec3f origin, Vec3f normal)
-		: CPrim()
+	CPrimPlane(Vec3f color, Vec3f origin, Vec3f normal)
+		: CPrim(color)
 		, m_normal(normal)
 		, m_origin(origin)
 	{
@@ -27,6 +28,17 @@ public:
 	virtual bool Intersect(Ray& ray) override
 	{
 		// --- PUT YOUR CODE HERE ---
+		float d1 = m_normal.dot(ray.org - m_origin);
+		float d2 = m_normal.dot(ray.dir);
+		float t;
+
+		if(d2 == 0) return 0;
+		else		t = d1 / d2; 
+
+		if(t < Epsilon || t > ray.t)
+			return false;
+
+		ray.t = t;
 		return true;
 	}
 	

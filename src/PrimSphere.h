@@ -14,9 +14,10 @@ public:
 	 * @brief Constructor
 	 * @param center Position of the center of the sphere
 	 * @param radius Radius of the sphere
+	 * @param color Color of the primitive
 	 */
-	CPrimSphere(Vec3f center, float radius)
-		: CPrim()
+	CPrimSphere(Vec3f color, Vec3f center, float radius)
+		: CPrim(color)
 		, m_center(center)
 		, m_radius(radius)
 	{}
@@ -25,6 +26,23 @@ public:
 	virtual bool Intersect(Ray &ray) override
 	{
 		// --- PUT YOUR CODE HERE ---
+
+		Vec3f v = ray.org - m_center;
+		
+		float a = ray.dir.dot(ray.dir);
+		float b = 2 * ray.dir.dot(v);
+		float c = v.dot(v) - m_radius * m_radius;
+		float d = b * b - 4 * a * c;
+
+		if(d < 0)	
+			return false;
+
+		float t = (-b + sqrt(d)) / a;
+		
+		if(t < Epsilon || t > ray.t)
+			return false;
+
+		ray.t = t;
 		return true;
 	}
 	

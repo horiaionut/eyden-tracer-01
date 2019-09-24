@@ -12,8 +12,9 @@ class CPrim
 public:
 	/**
 	* @brief Constructor
+	* @param color Color of the primitive
 	*/
-	CPrim(void) = default;
+	CPrim(Vec3f color) : m_color(color){};
 	CPrim(const CPrim&) = delete;
 	virtual ~CPrim(void) = default;
 	const CPrim& operator=(const CPrim&) = delete;
@@ -26,4 +27,8 @@ public:
 	 * @retval false Otherwise
 	 */
 	virtual bool	Intersect(Ray& ray) = 0;
+	Vec3f getColor(){ return m_color;}
+
+private:
+	Vec3f m_color;
 };
