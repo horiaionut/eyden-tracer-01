@@ -59,19 +59,6 @@ int main(int argc, char* argv[])
 	CCameraPerspective c1(Vec3f(0, 0, 10), Vec3f(0, 0, -1), Vec3f(0, 1, 0), 60, resolution);
 	Mat img1 = RenderFrame(c1);
 	imwrite("perspective1.jpg", img1);
-
-	// Ray ray;                            		
-	// c1.InitRay(0, 0, ray);
-	// std::cout << ray.dir << '\n';
-
-	// c1.InitRay(0, 599, ray);
-	// std::cout << ray.dir << '\n';
-
-	// c1.InitRay(799, 0, ray);
-	// std::cout << ray.dir << '\n';
-
-	// c1.InitRay(799, 599, ray);
-	// std::cout << ray.dir << '\n';
 	
 	CCameraPerspective c2(Vec3f(-8, 3, 8), Vec3f(1, -0.1f, -1), Vec3f(0, 1, 0), 45, resolution);
 	Mat img2 = RenderFrame(c2);

@@ -28,11 +28,11 @@ public:
 	virtual bool Intersect(Ray& ray) override
 	{
 		// --- PUT YOUR CODE HERE ---
-		float d1 = m_normal.dot(ray.org - m_origin);
+		float d1 = - m_normal.dot(ray.org - m_origin);
 		float d2 = m_normal.dot(ray.dir);
 		float t;
 
-		if(d2 == 0) return 0;
+		if(d2 == 0) return false;
 		else		t = d1 / d2; 
 
 		if(t < Epsilon || t > ray.t)

@@ -37,7 +37,10 @@ public:
 		if(d < 0)	
 			return false;
 
-		float t = (-b + sqrt(d)) / a;
+		float t = (-b - sqrt(d)) / a;
+
+		if(t < Epsilon)
+			t = (-b + sqrt(d)) / a;
 		
 		if(t < Epsilon || t > ray.t)
 			return false;

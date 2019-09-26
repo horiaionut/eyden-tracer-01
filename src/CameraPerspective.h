@@ -21,12 +21,12 @@ public:
 	CCameraPerspective(Vec3f pos, Vec3f dir, Vec3f up, float angle, Size resolution)
 		: ICamera(resolution)
 		, m_pos(pos)
-		, m_dir(dir)
+		, m_dir(normalize(dir))
 		, m_up(up)
 	{
 		// --- PUT YOUR CODE HERE ---
 		m_focus = 1 / tan(angle / 2 * Pif / 180);
-		m_yAxis = m_up;
+		m_yAxis = -m_up;
 		m_xAxis = m_dir.cross(m_up);
 
 		m_aspect =  (float) resolution.width / resolution.height;
